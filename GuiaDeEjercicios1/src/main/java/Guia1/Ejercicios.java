@@ -17,7 +17,7 @@ public double entradaDeDatos() {
 	
 	ps.println("Ingrese la cantidad de horas trabajadas: ");
 	
-	//lee los bytes
+	//lee los bytesss
 	try {
 		int Byte = -1;
 		//String cadena = "";
