@@ -1,8 +1,11 @@
 package Readers;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -63,6 +66,57 @@ public class Colecciones {
 		verduras.isEmpty();
 		verduras.size();
 		
+		Object[] ver = verduras.toArray();
+		Collection<String> valores = españolRAE.values();
+	}
 	
+	public void Recorridos() {
+
+		// FOR normal
+
+		for (int i = 0; i <= frutas.size(); i++) {
+			frutas.get(i);
+		}
 	
+			// FOR EACH
+	
+		for (String item : frutas) {
+			System.out.println(item);
+		}
+	
+		Iterator it = frutas.iterator();
+	
+		while (it.hasNext()) {
+			it.remove();	
+			it.next();
+		}
+		
+		///////MAP´s & SET´s
+		///MAP(k,v) & SET(k)
+		for(String traduccion : españolRAE.keySet()) {		
+		}
+		
+		for(String traduccion : españolRAE.values()) {		
+		} 
+		
+		Iterator it2 = españolRAE.keySet().iterator();
+		while( it2.hasNext() )
+		{
+			Object key = it2.next(); //k
+			españolRAE.get(key);     //v
+		}
+		
+		for( Map.Entry<String, String> e : españolRAE.entrySet())
+		{
+			e.getKey();
+			e.getValue();
+		}
+		Collections.sort( verduras , Collections.reverseOrder() );
+		"chula"
+		"chalu"
+	}
 }
+
+
+
+
