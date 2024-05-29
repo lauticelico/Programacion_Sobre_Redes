@@ -8,6 +8,8 @@ public class main {
 		//archivo.createFilePrintStream(archivo.getArchivo());
 		
 		archivo.createFilePrinter(archivo.getArchivo());
+		
+		archivo.datosArchivos();
 	}
 
 }
