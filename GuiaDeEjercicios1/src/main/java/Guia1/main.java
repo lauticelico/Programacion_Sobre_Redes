@@ -1,11 +1,29 @@
 package Guia1;
 
+import java.io.IOException;
+import java.io.PrintStream;
+
 public class main {
 
 	public static void main(String[] args) {
-	// TODO Auto-generated method stub
-		Ejercicios ej = new Ejercicios();
-		ej.Ejercicio1();
-	}
+		PrintStream ps = new PrintStream (System.out);
+		
+		// --------------------------------------------------------------------------------PUNTO 1----------------------------------------------------------------------------------------------------------
 
+		//ps.println(Ejercicios.ejercicioA());
+		//ps.println(Ejercicios.ejercicioB());
+		//ps.println(Ejercicios.ejercicioC());
+		//ps.println(Ejercicios.ejercicioD());
+		//ps.println(Ejercicios.ejercicioE());
+		//ps.println(Ejercicios.ejercicioF());
+		//ps.println(Ejercicios.ejercicioG());
+		
+		// --------------------------------------------------------------------------------PUNTO 2----------------------------------------------------------------------------------------------------------
+		
+		//ps.println(Ejercicios.ejercicioA2());
+		//ps.println(Ejercicios.ejercicioB2());
+		//ps.println(Ejercicios.ejercicioC2());
+		ps.println(Ejercicios.ejercicioD2());
+	}
+	
 }
