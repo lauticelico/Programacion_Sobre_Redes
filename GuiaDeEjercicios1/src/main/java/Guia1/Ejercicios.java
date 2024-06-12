@@ -31,7 +31,7 @@ public class Ejercicios {
 		return cadena;
 	}
 	
-// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	static String ejercicioA() {	//Dados el valor de una hora de trabajo y la cantidad de horas trabajadas, la computadora muestra el valor del sueldo bruto.
 		ps.println("Ingrese valor por hora de trabajo: ");
