@@ -23,7 +23,12 @@ public class main {
 		//ps.println(Ejercicios.ejercicioA2());
 		//ps.println(Ejercicios.ejercicioB2());
 		//ps.println(Ejercicios.ejercicioC2());
-		ps.println(Ejercicios.ejercicioD2());
+		//ps.println(Ejercicios.ejercicioD2());
+		//ps.println(Ejercicios.ejercicioE2());
+		//ps.println(Ejercicios.ejercicioF2());
+		Ejercicios.ejercicioG2();
+
+		
 	}
 	
 }

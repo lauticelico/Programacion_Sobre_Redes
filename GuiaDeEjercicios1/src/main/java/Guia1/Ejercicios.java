@@ -1,9 +1,12 @@
 package Guia1;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.time.*;
 
 
 
@@ -281,10 +284,132 @@ public class Ejercicios {
 		}
 		return "Los números no son divisibles entre sí";
 	}
+	
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-}
+	static String ejercicioE2() { //Dada la fecha de nacimiento de una persona, la computadora muestra su signo del zodíaco
+		ps.println("Ingrese su fecha de nacimiento");
+		ps.println("Ingrese año: ");
+		
+		String dato1 = reader.leer();
+		int año = Integer.parseInt(dato1);
+		
+		ps.println("Ingrese mes: ");
+		
+		String dato2 = reader.leer();
+		int mes = Integer.parseInt(dato2);
+		
+		ps.println("Ingrese día: ");
+		
+		String dato3 = reader.leer();
+		int dia = Integer.parseInt(dato3);
+		
+		LocalDate fecha = LocalDate.of(año, mes, dia);
+		ps.println("Su fecha es: " + fecha);
+		
+		if ((mes == 1 && dia >= 20) || (mes == 2 && dia <= 18)) {
+            return "Tu signo es Acuario";
+        } else if ((mes == 2 && dia >= 19) || (mes == 3 && dia <= 20)) {
+            return "Tu signo es Piscis";
+        } else if ((mes == 3 && dia >= 21) || (mes == 4 && dia <= 19)) {
+            return "Tu signo es Aries";
+        } else if ((mes == 4 && dia >= 20) || (mes == 5 && dia <= 20)) {
+            return "Tu signo es Tauro";
+        } else if ((mes == 5 && dia >= 21) || (mes == 6 && dia <= 20)) {
+            return "Tu signo es Géminis";
+        } else if ((mes == 6 && dia >= 21) || (mes == 7 && dia <= 22)) {
+            return "Tu signo es Cáncer";
+        } else if ((mes == 7 && dia >= 23) || (mes == 8 && dia <= 22)) {
+            return "Tu signo es Leo";
+        } else if ((mes == 8 && dia >= 23) || (mes == 9 && dia <= 22)) {
+            return "Tu signo es Virgo";
+        } else if ((mes == 9 && dia >= 23) || (mes == 10 && dia <= 22)) {
+            return "Tu signo es Libra";
+        } else if ((mes == 10 && dia >= 23) || (mes == 11 && dia <= 21)) {
+            return "Tu signo es Escorpio";
+        } else if ((mes == 11 && dia >= 22) || (mes == 12 && dia <= 21)) {
+            return "Tu signo es Sagitario";
+        } else if ((mes == 12 && dia >= 22) || (mes == 1 && dia <= 19)) {
+            return "Tu signo es Capricornio";
+        }
+        return "Fecha inválida";
+	}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	static String ejercicioF2() { // Dado el nombre y apellido de 2 personas, la computadora muestra cuál de los 2 tiene el apellido más largo.
+		
+		ps.println("Ingrese el nombre de la primera persona: ");
+		String nombre1 = reader.leer();
+		
+		ps.println("Apellido: ");
+		String apellido1 = reader.leer();
+		
+		int longitudApellido1 = apellido1.length();
+		
+		ps.println("Ingrese el nombre de la segunda persona: ");
+		String nombre2 = reader.leer();
+		
+		ps.println("Apellido: ");
+		String apellido2 = reader.leer();
+		
+		int longitudApellido2 = apellido2.length();
+
+		if (longitudApellido1 > longitudApellido2)
+			return apellido1 + " es mas largo que " + apellido2 + " por una diferencia de " + (longitudApellido1 - longitudApellido2) + " letras";
+		else if(longitudApellido1 < longitudApellido2){
+			return apellido2 + " es mas largo que " + apellido1 + " por una diferencia de " + (longitudApellido2 - longitudApellido1) + " letras";
+		}
+		else
+			return apellido1 + apellido2 + "tienen la misma cantidad de caracteres con un total de" + apellido1.length() + "cada uno";
+		
+	}
+	
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	static void ejercicioG2() { // Dado un entero N natural, la computadora muestra su tabla de multiplicar.
+        ps.println("Ingrese numero para realizar su tabla de multiplicar: ");
+        
+        String dato = reader.leer();
+        int numero = Integer.parseInt(dato);
+        
+        for(int i = 0; i <= 10; i++) {
+        	ps.println(numero + " x " + i + " = " + (numero * i));
+        }
+	}
+	
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    static void ejercicioH2() { //Dado un número natural, la computadora indica si es primo o no.
+        ps.println("Ingrese un número natural para verificar si es primo: ");
+            
+        String dato = reader.leer();
+        int numero = Integer.parseInt(dato);
+        boolean esPrimo = true;
+
+        if (numero <= 1) {
+            esPrimo = false;
+        } else {
+            for (int i = 2; i <= Math.sqrt(numero); i++) {
+                if (numero % i == 0) {
+                    esPrimo = false;
+                    break;
+                }
+            }
+        }
+
+        if (esPrimo) {
+            ps.println("El número " + numero + " es primo.");
+        } else {
+            ps.println("El número " + numero + " no es primo.");
+        }
+            
+    	
+    	}
+   }
+	
+	
+
 
 
 
