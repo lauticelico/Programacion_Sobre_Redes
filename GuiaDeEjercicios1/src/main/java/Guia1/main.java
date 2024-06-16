@@ -26,8 +26,8 @@ public class main {
 		//ps.println(Ejercicios.ejercicioD2());
 		//ps.println(Ejercicios.ejercicioE2());
 		//ps.println(Ejercicios.ejercicioF2());
-		Ejercicios.ejercicioG2();
-
+		//Ejercicios.ejercicioG2();
+		
 		
 	}
 	
