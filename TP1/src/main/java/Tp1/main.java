@@ -13,25 +13,23 @@ public class main {
         PrintStream ps = new PrintStream(System.out);
 
         int[] vector1 = new int[5];
-        int[] vector2 = new int[5];
+        int[] vector2 = {10, 2, 3, 4, 3};
+         
 
         try {
             for (int i = 0; i < 5; i++) {
-                ps.printf("Ingrese numero %d del primer vector: %n", i + 1);
+                ps.println("Ingrese numero "+ (i+1) +" del primer vector");
                 vector1[i] = Integer.parseInt(br.readLine());
             }
 
-            for (int i = 0; i < 5; i++) {
-                ps.printf("Ingrese numero %d del segundo vector: %n", i + 1);
-                vector2[i] = Integer.parseInt(br.readLine());
-            }
+      
         } catch (IOException e) {
             ps.println("Se produjo un error de entrada/salida: " + e.getMessage());
         } catch (NumberFormatException e) {
             ps.println("Debe ingresar un número válido: " + e.getMessage());
         }
 
-        // Guardar los datos en un archivo de texto
+// -----------------------------------------------ARCHIVO DE TEXTO-----------------------------------------------------------
         String fileName = "nonVolatileMemory.txt";
 
         try (FileWriter fileWriter = new FileWriter(fileName)) {
@@ -45,14 +43,14 @@ public class main {
             e.printStackTrace();
         }
 
-        // Leer los datos y generar archivos de resultados y errores
-        String resultadosFileName = "resultados.txt";
-        String erroresFileName = "error.txt";
+ // ----------------------------------------ARCHIVO DE RESULTADOS Y ERRORES-----------------------------------------------------------
+        String archivoResultados = "resultados.txt";
+        String archivoErrores = "error.txt";
 
-        try (FileWriter resultadosWriter = new FileWriter(resultadosFileName);
-             FileWriter erroresWriter = new FileWriter(erroresFileName)) {
+        try (FileWriter resultadosWriter = new FileWriter(archivoResultados);
+             FileWriter erroresWriter = new FileWriter(archivoErrores)) {
 
-            // Procesar el primer vector
+// ----------------------------------------PRIMER VECTOR-----------------------------------------------------------
             for (int i = 0; i < vector1.length - 1; i++) {
                 int numero1 = vector1[i];
                 int numero2 = vector1[i + 1] - 3;
@@ -68,7 +66,8 @@ public class main {
                 }
             }
 
-            // Procesar el segundo vector
+// ----------------------------------------SEGUNDO VECTOR-----------------------------------------------------------
+
             for (int i = 0; i < vector2.length - 1; i++) {
                 int numero1 = vector2[i];
                 int numero2 = vector2[i + 1] - 3;
