@@ -112,8 +112,7 @@ public class Colecciones {
 			e.getValue();
 		}
 		Collections.sort( verduras , Collections.reverseOrder() );
-		"chula"
-		"chalu"
+
 	}
 }
 
