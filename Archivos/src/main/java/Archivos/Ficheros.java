@@ -1,5 +1,6 @@
 package Archivos;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,13 +21,26 @@ public class Ficheros {
 	private File archivo;
 	private PrintStream ps;
 	
-	public Ficheros() {
-		String ruta = ""; // " c:\\User\\ "
-		String nombre = "Mario";
-		String extension = ".txt"; 
+	public Ficheros(String rut, String name, String ext) {
+		String ruta = rut; // " c:\\User\\ "
+		String nombre = name;
+		String extension = ext; 
 		
 		archivo = new File(ruta.concat(nombre.concat(extension)));
+		try {
+
+			System.setErr(new PrintStream(new FileOutputStream(new File("Errores.log")),true));
+
+		} catch (IOException e) {
+
+			Logger.getLogger(Ficheros.class.getName()).log(Level.WARNING, null, e);
+
+		}
+
+		archivo = new File(ruta.concat(nombre.concat(extension)));
+		
 	}
+		
 	
 	public File getArchivo() {
 
@@ -128,7 +142,7 @@ public class Ficheros {
 		
 	}
 
-	public void createFileBuffe(File a) {
+	public void createFileBuffered(File a) {
 
 		BufferedWriter bw = null;
 		FileWriter fw = null;
@@ -136,10 +150,12 @@ public class Ficheros {
 		try {
 
 			fw = new FileWriter(a,true);
-			bw = new BufferedWriter(fw);	
+			bw = new BufferedWriter(fw);
+			
 			bw.write("Hellooo");
 			bw.newLine();
 			bw.write("Byeee");
+			
 			bw.flush();
 
 		} catch (IOException e) {
@@ -166,26 +182,115 @@ public class Ficheros {
 
 	}
 	
-	public void leerCharChar(File a) {
+	public String leerCharChar(File a) {
+
+		// como leo un archivo?
 		FileReader fr = null;
 		String texto = "";
-
 		try {
+
 			fr = new FileReader(a);
-			
 			int letra;
-			while ( (letra = fr.read()) != 1 ){
-				texto += letra;
+			while ((letra = fr.read()) != -1) // la condicion es -1
+			{
+				texto += (char) letra;
 			}
-		}catch(FileNotFoundException e){
+			
+		} catch (FileNotFoundException e) {
+
 			e.printStackTrace();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
+			try {
+				fr.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return texto;
+
+	}
+	
+	public String leerConReader(File a) { //Clase Reader
+	    FileReader fr = null;
+	    BufferedReader br = null;
+	    String texto = "";
+
+	    try {
+	        fr = new FileReader(a);
+	        br = new BufferedReader(fr);
+	        String linea = "";
+
+	        while ((linea = br.readLine()) != null) {
+	            texto += linea.concat("\n");
+	        }
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (br != null) br.close();
+	            if (fr != null) fr.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return texto;
+	}
+
+	public void editarArchivo(File original) {
+		File copia = new File("copia.tmp");
+		FileReader Fr = null;
+		BufferedReader Br = null;
+		FileWriter Fw = null;
+		PrintWriter Pw = null;
+		
+		try {
+			 Fr = new FileReader(original);
+			 Br = new BufferedReader(Fr);
+			
+			if( !copia.exists() )
+			{
+				 Fw = new FileWriter(copia, true);
+				 Pw = new PrintWriter(Fw);
+				 
+				 String renglon = "";
+				 while((renglon = Br.readLine( )) != null) {
+					 //sobre el STRING renglon puedo trabajar
+					 //mantengo los datos?
+					 // elimino los datos?
+					 //  edito  los datos?
+					 Pw.println(renglon.toUpperCase());
+				 }
+				 
+			}
+			Br.close();
+			Fr.close();
+			
+			if(original.exists() )
+				original.delete();
+			
+			if(copia.exists())
+				copia.renameTo(original);
+			
+		}catch(FileNotFoundException ex) {
+			
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}finally{
 			
 		}
+		
 	}
+	
+	
+	
 	
 	
 	
