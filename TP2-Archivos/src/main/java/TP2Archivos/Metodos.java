@@ -133,9 +133,8 @@ public class Metodos {
 	        Ficheros.ps.println("Precio de compra: " + precio_compra);
 	        Ficheros.ps.println("Precio de venta: " + precio_venta);
 	        Ficheros.ps.println("Stock: " + cant_stock);
-	        Ficheros.ps.println();
 	        Ficheros.ps.flush();
-	        ps.close();
+	        //ps.close();
 		 
 	 }
 	 
@@ -143,9 +142,6 @@ public class Metodos {
 	 
 	 
 	 
+	 
+	 
 }
-	
-	
-	
-	
-

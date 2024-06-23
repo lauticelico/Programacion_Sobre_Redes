@@ -28,8 +28,13 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Ficheros ficheros = new Ficheros();
+		menu();
 		
-		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	static void menu() {
 		while (continuar) { //Menú
 			ps.println("Ingrese la opción a ejecutar:");
 			ps.println("1- Agregar producto");
@@ -42,6 +47,7 @@ public class Main {
 			case 1:
 				ps.println("Ejecutando Agregar producto");
 				Metodos.PUNTO5_productos();
+
 				continuar = true;
 				break;
 			case 2:
@@ -58,10 +64,8 @@ public class Main {
 				ps.println("Opción inválida. Por favor, ingrese una opción válida.");
 				break;
 			}				
-		}
+		}	
 	}
-	
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	static int PUNTO1_leerOpcion() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

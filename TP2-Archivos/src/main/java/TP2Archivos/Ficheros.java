@@ -20,7 +20,7 @@ public class Ficheros { //PUNTO 6
 	
 	{
 		try {
-			ps = new PrintStream ( new FileOutputStream("inventario.dat" , false) );
+			ps = new PrintStream ( new FileOutputStream("inventario.dat" , true) );
 			
 
 		} catch (FileNotFoundException e) {
