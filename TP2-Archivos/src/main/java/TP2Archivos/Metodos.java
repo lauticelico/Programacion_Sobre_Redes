@@ -31,35 +31,44 @@ public class Metodos {
 		return cadena;
 	}
 	
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
-	/*static String leerDatosYDevolver_1() {
+	static String PUNTO2_leerDatosYDevolver() {
 		ps.println("Ingrese texto: ");
-		String texto_teclado = leerDatos();
+		String texto_teclado = PUNTO2_leerDatos();
 		return texto_teclado;
-	}*/
+	}
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
     
-	 static String PUNTO3_verificarTipoDato() {
-	        ps.println("Ingrese un dato: ");
-	        String dato = PUNTO2_leerDatos();
+		 static String PUNTO3_verificarTipoDato() {
+			   ps.println("Ingrese el texto a identificar: ");
+			   String dato = PUNTO2_leerDatos();
+			   boolean conPunto = false;
+			   boolean esNumero = true;
 
-	        // Intentar convertir a entero
-	        try {
-	            Integer.parseInt(dato);
-	            return "Entero";
-	        } catch (NumberFormatException excepcion1) {
-	            // Si no se puede convertir a entero, intentar convertir a float
-	            try {
-	                Float.parseFloat(dato);
-	                return "Número con coma (float)";
-	            } catch (NumberFormatException excepcion2) {
-	                // Si no se puede convertir a float, es un String
-	                return "String";
-	            }
-	        }
-	    }
+			   for (int i = 0; i < dato.length(); i++) {
+			       char caracter = dato.charAt(i);
+			       if (caracter >= '0' && caracter <= '9') {
+			           continue;
+			       } else if ((caracter == '.' || caracter == ',') && !conPunto) {
+			    	   conPunto = true;
+			       } else {
+			           esNumero = false;
+			           break;
+			       }
+			   }
+
+			   if (esNumero) {
+			       if (conPunto) {
+			           return "Es un número con coma.";
+			       } else {
+			           return "Es un número entero.";
+			       }
+			   } else {
+			       return "Es un texto.";
+			   }
+			}
 	 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	 
@@ -83,61 +92,43 @@ public class Metodos {
 	        
 	    } 
 	 
-	 
-	 public static void PUNTO4_convertToAscii() {
-	        ps.println("Ingrese la palabra para convertir a ASCII: ");
-	        String palabra = PUNTO2_leerDatos();
-
-	        StringBuilder asciiValues = new StringBuilder();
-
-	        for (int i = 0; i < palabra.length(); i++) {
-	            char character = palabra.charAt(i);
-	            int asciiValue = (int) character;
-	            asciiValues.append(asciiValue);
-
-	            if (i < palabra.length() - 1) {
-	                asciiValues.append(", ");
-	            }
-	        }
-
-	        ps.println("La palabra '" + palabra + "' convertida a ASCII es: " + asciiValues.toString());
-	    }
-	
-	 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
-	 static void PUNTO5_productos() { //Pedirle al usuario que ingrese: Nombre de producto, Precio de Compra, Precio de Venta y Stock
-		 ps.println("Ingrese nombre del producto: ");
-		 String nombre = PUNTO2_leerDatos();
-		 
-		 ps.println("Ingrese precio de compra del producto: ");
-		 String dato = PUNTO2_leerDatos();
-		 float precio_compra = Float.parseFloat(dato);
-		 
-		 ps.println("Ingrese precio de venta del producto: ");
-		 String dato2 = PUNTO2_leerDatos();
-		 float precio_venta = Float.parseFloat(dato2);
-		 
-		 ps.println("Ingrese stock del producto: ");
-		 String dato3 = PUNTO2_leerDatos();
-		 int cant_stock = Integer.parseInt(dato3);
-		 
-		 PUNTO7_agregarAlArchivo(nombre, precio_compra, precio_venta, cant_stock);
-		 
-	 }
-	 
+		static void PUNTO5_productos() { // Pedirle al usuario que ingrese: Nombre de producto, Precio de Compra, Precio de Venta y Stock
+
+			ps.println();
+			ps.println("Ingrese nombre del producto: ");
+			String nombre = PUNTO2_leerDatos();
+
+			ps.println("Ingrese precio de compra del producto: ");
+			String dato = PUNTO2_leerDatos();
+			float precio_compra = Float.parseFloat(dato);
+
+			ps.println("Ingrese precio de venta del producto: ");
+			String dato2 = PUNTO2_leerDatos();
+			float precio_venta = Float.parseFloat(dato2);
+
+			ps.println("Ingrese stock del producto: ");
+			String dato3 = PUNTO2_leerDatos();
+			int cant_stock = Integer.parseInt(dato3);
+
+			PUNTO7_agregarAlArchivo(nombre, precio_compra, precio_venta, cant_stock);
+
+		}
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
-	 
-	 public static void PUNTO7_agregarAlArchivo(String nombre, float precio_compra, float precio_venta, int cant_stock) {
-		 	Ficheros.ps.println("Nombre del producto: " + nombre);
-	        Ficheros.ps.println("Precio de compra: " + precio_compra);
-	        Ficheros.ps.println("Precio de venta: " + precio_venta);
-	        Ficheros.ps.println("Stock: " + cant_stock);
-	        Ficheros.ps.flush();
-	        //ps.close();
-		 
-	 }
-	 
+
+		public static void PUNTO7_agregarAlArchivo(String nombre, float precio_compra, float precio_venta,
+				int cant_stock) {
+			
+			Ficheros.ps.println("Nombre del producto: " + nombre);
+			Ficheros.ps.println("Precio de compra: " + precio_compra);
+			Ficheros.ps.println("Precio de venta: " + precio_venta);
+			Ficheros.ps.println("Stock: " + cant_stock);
+			ps.println();
+			Ficheros.ps.flush();
+
+		}
 	 
 	 
 	 

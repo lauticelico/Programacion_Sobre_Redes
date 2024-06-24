@@ -27,8 +27,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		Metodos.PUNTO3_verificarTipoDato();
 		Ficheros ficheros = new Ficheros();
-		menu();
+		//menu();
 		
 	}
 	
@@ -36,34 +37,41 @@ public class Main {
 	
 	static void menu() {
 		while (continuar) { //Menú
-			ps.println("Ingrese la opción a ejecutar:");
-			ps.println("1- Agregar producto");
-			ps.println("2- Mostrar produco");
-			ps.println("3- Salir");
 
+			ps.println(Utils.ANSI_YELLOW_BACKGROUND + Utils.ANSI_BLACK + "Ingrese la opción a ejecutar:" + Utils.ANSI_RESET);
+			ps.println();
+			ps.println(Utils.ANSI_GREEN_BACKGROUND + Utils.ANSI_BLACK + "1" + Utils.ANSI_RESET + Utils.ANSI_GREEN_BOLD + " Agregar producto" + Utils.ANSI_RESET);
+			ps.println(Utils.ANSI_GREEN_BACKGROUND + Utils.ANSI_BLACK + "2" + Utils.ANSI_RESET + Utils.ANSI_GREEN_BOLD +  " Mostrar producto"+ Utils.ANSI_RESET);
+			ps.println(Utils.ANSI_RED_BACKGROUND + Utils.ANSI_BLACK + "3" + Utils.ANSI_RESET + Utils.ANSI_RED_BOLD + " Salir" + Utils.ANSI_RESET);
+			ps.println();
 			int opcion = PUNTO1_leerOpcion();
 
 			switch (opcion) {
 			case 1:
-				ps.println("Ejecutando Agregar producto");
+				ps.println();
+				ps.println("Ejecutando Agregar producto...");
+				ps.println();
 				Metodos.PUNTO5_productos();
-
 				continuar = true;
 				break;
 			case 2:
-				ps.println("Ejecutando Mostrar producto");
+				ps.println();
+				ps.println("Ejecutando Mostrar producto...");
+				ps.println();
 				// Lógica demostarr ultimo producto ingresado (b)
 				Ficheros.mostrarProductos();
 				continuar = true;
 				break;
 			case 3:
+				ps.println();
 				ps.println("Saliendo...");
 				continuar = false;
 				break;
 			default:
+				ps.println();
 				ps.println("Opción inválida. Por favor, ingrese una opción válida.");
 				break;
-			}				
+			}	
 		}	
 	}
 	
@@ -73,7 +81,7 @@ public class Main {
 		boolean entradaValida = false;
 
 		while (!entradaValida) {
-			ps.println("Ingrese la opción:");
+			ps.println(Utils.ANSI_YELLOW + "Ingrese la opción:" + Utils.ANSI_RESET);
 			try {
 				String input = reader.readLine();
 				opcion = Integer.parseInt(input);
@@ -81,13 +89,14 @@ public class Main {
 				if (opcion >= 0) {
 					entradaValida = true;
 				} else {
+					ps.println();
 					ps.println("Error: Por favor, ingrese un número entero positivo.");
 				}
 			} catch (NumberFormatException | IOException e) {
+				ps.println();
 				ps.println("Error: Por favor, ingrese un número entero válido.");
 			}
 		}
-
 		return opcion;
 	}
 

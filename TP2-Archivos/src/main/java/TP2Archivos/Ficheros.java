@@ -22,10 +22,12 @@ public class Ficheros { //PUNTO 6
 		try {
 			ps = new PrintStream ( new FileOutputStream("inventario.dat" , true) );
 			
+			
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 	}
 	
@@ -36,6 +38,7 @@ public class Ficheros { //PUNTO 6
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
             }
+            br.close();
         } catch (IOException e) {
             System.out.println("Archivo no encontrado.");
         }
