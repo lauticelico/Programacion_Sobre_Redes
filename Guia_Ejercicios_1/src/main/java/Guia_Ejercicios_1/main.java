@@ -28,7 +28,14 @@ public class main {
 		//ps.println(Ejercicios.ejercicioF2());
 		//Ejercicios.ejercicioG2();
 		
-		
+		// --------------------------------------------------------------------------------PUNTO 3----------------------------------------------------------------------------------------------------------
+
+		 //Ejercicios.ejercicioA3();
+		 //Ejercicios.ejercicioB3();
+		//Ejercicios.ejercicioC3();
+		//Ejercicios.ejercicioD3();
+		//Ejercicios.ejercicioE3();
+		Ejercicios.ejercicioF3();
 	}
 	
 }

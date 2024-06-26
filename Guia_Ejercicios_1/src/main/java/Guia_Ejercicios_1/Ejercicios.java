@@ -1,12 +1,26 @@
 package Guia_Ejercicios_1;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Logger;
+import java.util.logging.Level; 
+
+
+import javax.print.event.PrintJobAdapter;
+
 import java.time.*;
 
 
@@ -14,7 +28,6 @@ import java.time.*;
 public class Ejercicios {
 	static PrintStream ps = new PrintStream (System.out);
     static ClassReader reader = new ClassReader();
-
 
 // -------------------------------------------------------------------------------------PUNTO 1-----------------------------------------------------------------------------------------------------
 	static String entradaDeDatos() {
@@ -407,9 +420,210 @@ public class Ejercicios {
             
     	
     	}
-   }
+    
+//-------------------------------------------------------------------------FILES------------------------------------------------------------------------------------------------------------------
+
+    static void ejercicioA3() { //Crear un archivo de texto (en la carpeta del proyecto) que guarde solo el último dato que el usuario escribe por consola.
+    	File archivo = new File("ultimo dato.txt");
+    	
+    	ps.println("Ingrese dato 1: ");
+    	String dato1 = reader.leer();
+    	
+    	ps.println("Ingrese dato 2: ");
+    	String dato2 = reader.leer();
+    	
+    	
+    	FileWriter fw = null;
+    	PrintWriter pw = null;
+    	
+       
+        	try {
+				fw = new FileWriter(archivo, true);
+				pw = new PrintWriter(fw);
+				pw.println("Ultimo dato ingresado: ");
+				pw.println(dato2);
+				pw.flush();
+				
+				
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING,null,e);;
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pw != null)
+						pw.close();
+					if(fw != null)
+						fw.close();
+				}catch(IOException e) {
+					Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING,null,e);;
+				}
+			}
+        	
+			
+    
+    }
+    
+ //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    static void ejercicioB3() { //Crear un archivo de texto (en la carpeta del proyecto) que guarde TODOS los valores NUMERICOS que ingrese el usuario por consola, cada uno en un renglón (puede ingresar otros datos que no sean numero OJO).
+        File archivo = new File("valores numericos.txt");
+        
+        System.out.println("Cuantos datos vas a ingresar?: ");
+        String dato = reader.leer();
+        int cant_datos = Integer.parseInt(dato);
+        
+        FileWriter fw = null;
+        PrintWriter pw = null;
+        
+        try {
+            fw = new FileWriter(archivo, false);
+            pw = new PrintWriter(fw);
+            
+            for (int i = 0; i < cant_datos; i++) {
+                System.out.println("Dato " + (i + 1) + ":");
+                String dato2 = reader.leer();
+                
+                if (dato2.matches(".*\\d.*")) {   //Condicion para saber si es un numero investigada en google
+                    pw.println(dato2);
+                }
+            }
+            
+            pw.flush();
+            
+        } catch (IOException e) {
+            Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pw != null) {
+                    pw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (IOException e) {
+                Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+            }
+        }
+    }
+    
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    static void ejercicioC3() { //Crear un archivo de texto (fuera de la carpeta del proyecto) que se llame “números.txt” que guarde los números pares desde el 0 al 1000.
+    	File archivo = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\Ejercicio3C\\números.txt");
+    	FileWriter fw = null;
+        PrintWriter pw = null;
+        
+        
+    	try {
+    		
+			fw = new FileWriter (archivo , false);
+			pw = new PrintWriter(fw);
+			
+			
+			for(int i = 1 ; i<1000 ; i++) {
+				if( i % 2 == 0 ) {
+					pw.println(i);
+				}
+				
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+                if (pw != null) {
+                    pw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (IOException e) {
+                Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+            }
+		}
+    }
+     
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    static void ejercicioD3() { //Utilizar el archivo creado anteriormente “números.txt” y leer los valores para mostrarlos por la consola.
+    	File archivo = new File ("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\Ejercicio3C\\números.txt");
+    	FileReader fr = null;
+    	BufferedReader br = null;
+    	
+		try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+			
+			String aux;
+			
+			ps.println("Los datos del archivo pero en consola: ");
+			while((aux = br.readLine()) != null) {
+				ps.println(aux);
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fr != null) {
+					fr.close();
+				}
+				if (br != null) {
+					br.close();
+				}
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+		}
+    	
+    }
+    
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    static void ejercicioE3(){//Utilizar el archivo creado anteriormente “números.txt” y borrarle todos los renglones que contengas números impares.
+    	//NO HAY RENGLONES CON IMPARES
+    }
+    
+  //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    static void ejercicioF3() {
+        
+    }
+    
+    
+			
+}
+    
 	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
