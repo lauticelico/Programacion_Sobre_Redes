@@ -585,16 +585,222 @@ public class Ejercicios {
     
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
-    static void ejercicioE3(){//Utilizar el archivo creado anteriormente “números.txt” y borrarle todos los renglones que contengas números impares.
-    	//NO HAY RENGLONES CON IMPARES
-    }
+	//Utilizar el archivo creado anteriormente “números.txt” y borrarle todos los renglones que contengas números impares.
+	public static void Ejercicio3E() {
+		File original = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\Ejercicio3C\\números.txt");
+		File copia = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\copia.tmp");
+		FileReader fr = null;
+		BufferedReader br = null;
+		FileWriter fw = null;
+		PrintWriter pw = null;
+
+		try {
+			fr = new FileReader(original);
+			br = new BufferedReader(fr);
+
+			if (!copia.exists()) {
+				fw = new FileWriter(copia);
+				pw = new PrintWriter(fw);
+				String aux = "";
+				while ((aux = br.readLine()) != null) {
+					int num = Integer.parseInt(aux);
+					if (num % 3 != 0) {
+						pw.println(aux);
+					}
+				}
+			}
+			if (original.exists())
+				original.delete();
+			if (copia.exists())
+				copia.renameTo(original);
+		} catch (FileNotFoundException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} catch (IOException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} finally {
+			try {
+				if (pw != null)
+					pw.close();
+				if (fw != null)
+					fw.close();
+				if (br != null)
+					br.close();
+				if (fr != null)
+					fr.close();
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+		}
+	}
+    
     
   //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    static void ejercicioF3() {
-        
-    }
-    
+	static void ejercicioF3() {
+		File archivo = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\Ejercicio3C\\números.txt");
+		File archivo2 = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\Ejercicio3F\\primos.dat");
+
+		FileReader fr = null;
+		BufferedReader br = null;
+		FileWriter fw = null;
+		PrintWriter pw = null;
+		try {
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+			fw = new FileWriter(archivo2);
+			pw = new PrintWriter(fw);
+			String aux;
+
+			while ((aux = br.readLine()) != null) {
+				int num = Integer.parseInt(aux);
+				boolean numPrimo = true;
+
+				if (num < 2) {
+					numPrimo = false;
+				} else {
+					for (int i = 2; i <= num / 2; i++) {
+						if (num % i == 0) {
+							numPrimo = false;
+							break;
+						}
+					}
+				}
+				if (numPrimo) {
+					pw.println(num);
+				}
+			}
+		} catch (IOException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+				if (fw != null)
+					fw.close();
+				if (pw != null)
+					pw.close();
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+
+		}
+	}
+
+	static void ejercicioG3() {
+		File original = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\caracteres.dat");
+		File copia = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\copia.tmp");
+		FileReader fr = null;
+		BufferedReader br = null;
+		FileWriter fw = null;
+		PrintWriter pw = null;
+		// ingresar palabras
+		try {
+			fw = new FileWriter(original, false);
+			pw = new PrintWriter(fw);
+			for (int i = 0; i <= 10; i++) {
+				ps.println("Ingrese una palabra que contenga 'ñ': ");
+				String dato = entradaDeDatos();
+				pw.println(dato);
+				pw.flush();
+			}
+		} catch (FileNotFoundException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} catch (IOException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} finally {
+			try {
+				if (fw != null)
+					fw.close();
+				if (pw != null)
+					pw.close();
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+		}
+
+		// mostrar palabras
+		try {
+			fr = new FileReader(original);
+			br = new BufferedReader(fr);
+			String aux;
+			ps.println("Fichero original: ");
+			while ((aux = br.readLine()) != null) {
+				ps.println(aux);
+			}
+		} catch (FileNotFoundException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} catch (IOException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+		}
+
+		// reemplazar palabras
+		try {
+			fw = new FileWriter(copia, false);
+			pw = new PrintWriter(fw);
+			fr = new FileReader(original);
+			br = new BufferedReader(fr);
+			String aux;
+			while ((aux = br.readLine()) != null) {
+				String datos = aux.replace("ñ", "nie-nio");
+				pw.println(datos);
+				pw.flush();
+			}
+		} catch (IOException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} finally {
+			try {
+				if (pw != null)
+					pw.close();
+				if (fw != null)
+					fw.close();
+				if (br != null)
+					br.close();
+				if (fr != null)
+					fr.close();
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+		}
+		if (original.exists())
+			original.delete();
+		if (copia.exists())
+			copia.renameTo(original);
+
+		// mostrar palabras nuevas
+		try {
+			fr = new FileReader(original);
+			br = new BufferedReader(fr);
+			String aux;
+			ps.println("Fichero arreglado: ");
+			while ((aux = br.readLine()) != null) {
+				ps.println(aux);
+			}
+		} catch (FileNotFoundException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} catch (IOException e) {
+			Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+		} finally {
+			try {
+				if (fr != null)
+					fr.close();
+				if (br != null)
+					br.close();
+			} catch (IOException e) {
+				Logger.getLogger(Ejercicios.class.getName()).log(Level.WARNING, null, e);
+			}
+		}
+	}
     
 			
 }
