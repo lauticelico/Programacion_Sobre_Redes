@@ -586,7 +586,7 @@ public class Ejercicios {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
 	//Utilizar el archivo creado anteriormente “números.txt” y borrarle todos los renglones que contengas números impares.
-	public static void Ejercicio3E() {
+	public static void ejercicioE3() {
 		File original = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\Ejercicio3C\\números.txt");
 		File copia = new File("C:\\Users\\lauti\\Documents\\GitHub\\Programacion_Sobre_Redes\\Guia_Ejercicios_1\\copia.tmp");
 		FileReader fr = null;
