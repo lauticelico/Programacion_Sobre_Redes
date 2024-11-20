@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +20,17 @@ public class ClienteCli implements Runnable {
     final DataOutputStream dosCliente;
     boolean isConected;
     PrintStream ps;
+    ArrayList<String> controlParental = new ArrayList<>();
+    
     
     public ClienteCli(Socket sock, String nick, DataInputStream in, DataOutputStream out) {
         this.nickName = nick;
+        controlParental.add("puto");
+        controlParental.add("pelotudo");
+        controlParental.add("forro");
+        controlParental.add("hdp");
+        controlParental.add("feo");
+
         this.sock = sock;
         this.disCliente = in;
         this.dosCliente = out;    
@@ -41,17 +50,17 @@ public class ClienteCli implements Runnable {
 
         while (this.sock.isConnected() && this.isConected) {
             try {
-                // Leer el mensaje recibido
+                // LEE EL MENSAJE RECIBIDO
                 msgRecibido = this.disCliente.readUTF().trim();
 
-                // Comprobar si el mensaje es un comando
+                
                 if (msgRecibido.equalsIgnoreCase("/salir")) {
                     this.isConected = false;
                     this.dosCliente.writeUTF("Te has desconectado.");
                     break;
                 } else if (msgRecibido.equalsIgnoreCase("/clientes")) {
-                    // Enviar lista de clientes conectados
-                    StringBuilder listaClientes = new StringBuilder(Servidor.ANSI_BLUE + "Clientes conectados:\n" + Servidor.ANSI_RESET);
+                    // LISTA DE CLIENTES CONECTADOS
+                    StringBuilder listaClientes = new StringBuilder(Servidor.ANSI_CYAN + "Clientes conectados:\n" + Servidor.ANSI_RESET);
                     for (ClienteCli cli : Servidor.ClientesConectados) {
                         if (cli.isConected) {
                             listaClientes.append("- ").append(cli.getNickName()).append("\n");
@@ -61,7 +70,7 @@ public class ClienteCli implements Runnable {
                     continue;
                 }
 
-                // Separar destinatario y mensaje
+                // DESTINARIO Y MENSAJE (#)
                 if (msgRecibido.contains("#")) {
                     StringTokenizer token = new StringTokenizer(msgRecibido, "#");
                     destino = token.nextToken().trim().toLowerCase();
@@ -70,7 +79,7 @@ public class ClienteCli implements Runnable {
                     destino = "";
                 }
 
-                // Mostrar mensaje en consola del servidor
+                // MOSTRAR MENSAJE EN LA CONSOLA DEL SERVIDOR
                 ps.println("\n"
                         + Servidor.ANSI_PURPLE
                         + "El cliente "
@@ -88,7 +97,7 @@ public class ClienteCli implements Runnable {
                         + Servidor.ANSI_RESET
                 );
 
-                // Enviar mensaje a los destinatarios
+                // ENVIA MENSAJE A LOS DESTINATARIOS
                 for (ClienteCli cli : Servidor.ClientesConectados) {
                     if (msgRecibido.equalsIgnoreCase("")) break;
                     if (cli.getNickName().toLowerCase().equalsIgnoreCase(destino) && this.isConected) {
